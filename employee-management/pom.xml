@@ -15,7 +15,9 @@
     <description>Employee Management System</description>
     <properties>
         <java.version>11</java.version>
-        <lombok.version>1.18.24</lombok.version> <!-- Explicitly define Lombok version -->
+        <maven.compiler.source>${java.version}</maven.compiler.source>
+        <maven.compiler.target>${java.version}</maven.compiler.target>
+        <!-- <lombok.version>1.18.24</lombok.version> --> <!-- Rely on Spring Boot parent -->
     </properties>
     <dependencies>
         <dependency>
@@ -26,16 +28,23 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-jpa</artifactId>
         </dependency>
+        <!--
         <dependency>
             <groupId>com.h2database</groupId>
             <artifactId>h2</artifactId>
             <scope>runtime</scope>
         </dependency>
+        -->
+        <dependency>
+            <groupId>com.mysql</groupId>
+            <artifactId>mysql-connector-j</artifactId>
+            <version>8.0.33</version>
+            <scope>runtime</scope>
+        </dependency>
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
-            <version>${lombok.version}</version> <!-- Explicit version -->
-            <scope>provided</scope> <!-- Explicit scope -->
+            <optional>true</optional> <!-- Let Spring Boot parent manage version and scope -->
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -79,15 +88,14 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.10.1</version> <!-- Use a version compatible with Java 11 and Lombok -->
+                <!-- No explicit version, rely on Spring Boot parent -->
                 <configuration>
-                    <source>${java.version}</source>
-                    <target>${java.version}</target>
+                    <!-- Source and target are set by properties -->
                     <annotationProcessorPaths>
                         <path>
                             <groupId>org.projectlombok</groupId>
                             <artifactId>lombok</artifactId>
-                            <version>${lombok.version}</version> <!-- Ensure this matches the dependency version -->
+                            <!-- Version managed by Spring Boot parent's dependencyManagement -->
                         </path>
                     </annotationProcessorPaths>
                 </configuration>
