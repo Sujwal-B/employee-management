@@ -1,7 +1,7 @@
 package de.zeroco.employeemanagement.payload;
 
 import io.swagger.v3.oas.annotations.media.Schema;
-import javax.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotBlank;
 
 public class AuthRequest {
     @Schema(description = "Username of the user.", example = "adminuser", required = true)

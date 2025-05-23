@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
+import jakarta.annotation.PostConstruct;
 import javax.crypto.SecretKey;
 import java.util.Date;
 import java.util.HashMap;
@@ -27,7 +28,7 @@ public class JwtUtil {
     private SecretKey secretKey;
 
     // Initialize the key once it's read from properties
-    @javax.annotation.PostConstruct
+    @PostConstruct
     private void init() {
         // Ensure the secret key is long enough for HS256 (256 bits / 32 bytes)
         // If your secretString from properties is shorter, you might need a different approach
